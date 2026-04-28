@@ -134,7 +134,7 @@ This pattern is widely used in:
 * Pair matching problems
 * Subarray sum problems
 * Data lookup optimizations
-* 
+  
 
 # 2. 🔁 Palindrome Number (JavaScript)
 
