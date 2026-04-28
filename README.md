@@ -1,6 +1,6 @@
 #Algorithms
 
-##1.🧩 Two Sum (JavaScript)
+## 1.🧩 Two Sum (JavaScript)
 
 ## 📌 Problem Overview
 
