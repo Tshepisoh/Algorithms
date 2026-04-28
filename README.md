@@ -134,4 +134,157 @@ This pattern is widely used in:
 * Pair matching problems
 * Subarray sum problems
 * Data lookup optimizations
+* 
+
+# 2. 🔁 Palindrome Number (JavaScript)
+
+## 📌 Problem Statement
+
+Given an integer `x`, determine whether it is a **palindrome**.
+
+A number is a palindrome if it reads the same forward and backward.
+
+### ✅ Examples
+
+```text id="k2v8q1"
+121   → true
+-121  → false
+123   → false
+```
+
+---
+
+# 🚀 Approach: Reverse the Number
+
+## 💡 Idea
+
+We reverse the number digit by digit and compare it to the original number.
+
+If both are equal → it's a palindrome.
+
+---
+
+# 💻 Implementation
+
+```javascript id="p8x2v9"
+var isPalindrome = function (x) {
+    let reversed = 0;
+    let copy = x;
+
+    if (x < 0) {
+        return false;
+    }
+
+    while (copy > 0) {
+        let remainder = copy % 10;
+        reversed = reversed * 10 + remainder;
+        copy = Math.floor(copy / 10);
+    }
+
+    if (reversed === x) {
+        return true;
+    } else {
+        return false;
+    }
+};
+```
+
+---
+
+# 🔍 How It Works
+
+## Step-by-step breakdown
+
+For `x = 121`:
+
+| Step | copy | remainder | reversed |
+| ---- | ---- | --------- | -------- |
+| 1    | 121  | 1         | 1        |
+| 2    | 12   | 2         | 12       |
+| 3    | 1    | 1         | 121      |
+
+---
+
+## 🔹 Key Operations
+
+### 1. Extract last digit
+
+```javascript id="l9n3xq"
+copy % 10
+```
+
+### 2. Remove last digit
+
+```javascript id="m4v7qp"
+copy = Math.floor(copy / 10);
+```
+
+### 3. Build reversed number
+
+```javascript id="z8p2tn"
+reversed = reversed * 10 + remainder;
+```
+
+---
+
+# ⚠️ Edge Cases
+
+| Input | Output | Reason                               |
+| ----- | ------ | ------------------------------------ |
+| -121  | false  | negative numbers are not palindromes |
+| 10    | false  | reversed = 01                        |
+| 0     | true   | single digit is always palindrome    |
+
+---
+
+# ⏱️ Time Complexity
+
+## 🟡 O(log n)
+
+* The loop runs once per digit
+* Number of digits in `x` is proportional to `log₁₀(x)`
+
+### Why?
+
+Each iteration removes one digit:
+
+```text id="v2n8q1"
+121 → 12 → 1 → 0
+```
+
+---
+
+# 📦 Space Complexity
+
+## 🟢 O(1)
+
+Only a few variables are used:
+
+* `reversed`
+* `copy`
+* `remainder`
+
+No extra data structures required.
+
+---
+
+# 🧠 Key Takeaways
+
+* Uses **math operations instead of strings**
+* Efficient digit manipulation technique
+* Common pattern in coding interviews
+* Helps build foundation for:
+
+  * reverse number problems
+  * digit extraction problems
+  * numeric validation problems
+
+---
+
+# 🏁 Summary
+
+This solution checks if a number is a palindrome by reversing it mathematically and comparing it to the original value. It runs in **O(log n)** time and uses constant space.
+
+---
+
 
