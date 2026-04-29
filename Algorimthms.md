@@ -287,4 +287,146 @@ This solution checks if a number is a palindrome by reversing it mathematically 
 
 ---
 
+# 3. 🏛️ Roman to Integer (JavaScript)
+
+## 📌 Problem Statement
+
+Convert a Roman numeral string `s` into an integer.
+
+Roman numerals are represented by the following symbols:
+
+| Symbol | Value |
+| ------ | ----- |
+| I      | 1     |
+| V      | 5     |
+| X      | 10    |
+| L      | 50    |
+| C      | 100   |
+| D      | 500   |
+| M      | 1000  |
+
+---
+
+## 🔁 Special Rule (Subtractive Notation)
+
+Sometimes a smaller value appears before a larger one:
+
+| Case | Meaning    |
+| ---- | ---------- |
+| IV   | 4 (5 - 1)  |
+| IX   | 9 (10 - 1) |
+| XL   | 40         |
+| CM   | 900        |
+
+👉 If a smaller numeral comes before a larger one, **subtract it instead of adding it**.
+
+---
+
+# 🚀 Approach
+
+## 💡 Idea
+
+* Traverse the string from left to right
+* Compare the current symbol with the next one
+* If current < next → subtract
+* Otherwise → add
+
+---
+
+# 💻 Implementation
+
+```javascript
+var romanToInt = function (s) {
+    const roman = {
+        "I": 1,
+        "V": 5,
+        "X": 10,
+        "L": 50,
+        "C": 100,
+        "D": 500,
+        "M": 1000
+    }
+
+    let results = roman[s[s.length - 1]];
+
+    for (let i = 0; i < s.length; i++) {
+        if (roman[s[i]] < roman[s[i + 1]]) {
+            results = results - roman[s[i]];
+        }
+
+        if (roman[s[i]] >= roman[s[i + 1]]) {
+            results = results + roman[s[i]];
+        }
+    }
+    return results;
+};
+```
+
+---
+
+# 🔍 How It Works
+
+## Example: `"MCMXCIV"`
+
+| Index | Current  | Next     | Action   | Result |
+| ----- | -------- | -------- | -------- | ------ |
+| 0     | M (1000) | C (100)  | add      | 1000   |
+| 1     | C (100)  | M (1000) | subtract | 900    |
+| 2     | M (1000) | X (10)   | add      | 1900   |
+| 3     | X (10)   | C (100)  | subtract | 1890   |
+| 4     | C (100)  | I (1)    | add      | 1990   |
+| 5     | I (1)    | V (5)    | subtract | 1989   |
+| 6     | V (5)    | -        | add      | 1994   |
+
+---
+
+# ⏱️ Time Complexity
+
+## 🟢 O(n)
+
+* You loop through the string once
+* Each operation is constant time
+
+---
+
+# 📦 Space Complexity
+
+## 🟢 O(1)
+
+* Fixed-size object (`roman`)
+* No extra data structures
+
+---
+
+# ⚠️ Edge Cases
+
+| Input     | Output |
+| --------- | ------ |
+| "III"     | 3      |
+| "IV"      | 4      |
+| "IX"      | 9      |
+| "LVIII"   | 58     |
+| "MCMXCIV" | 1994   |
+
+---
+
+# 🧠 Key Concepts
+
+* **Hash map lookup** for constant-time access
+* **Greedy decision** (add or subtract based on next value)
+* **String traversal with lookahead**
+
+---
+
+# 🔥 Key Insight
+
+> The trick is comparing the current symbol with the next one to decide whether to add or subtract.
+
+---
+
+# 🏁 Conclusion
+
+This solution efficiently converts Roman numerals to integers using a single pass and constant space. It leverages a simple comparison strategy to handle subtractive notation.
+
+---
 
